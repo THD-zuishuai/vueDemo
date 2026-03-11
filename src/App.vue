@@ -1,276 +1,243 @@
 <template>
-  <div class="demo-wrap">
-    <h2>Vue 3 - 鼠标 / 指针 拖动方向监听 Demo</h2>
+  <div class="birthday-container">
+    <div class="bg-gradient"></div>
 
-    <div
-      ref="area"
-      class="area"
-      @pointerdown="onPointerDown"
-      @pointermove.prevent="onPointerMove"
-      @pointerup="onPointerUp"
-      @pointercancel="onPointerCancel"
-    >
-      <div v-if="!dragging" class="hint">按住并拖动（鼠标或触控）</div>
-      <div v-else class="hint">拖动中… 当前方向：<strong>{{ currentDirection }}</strong></div>
+    <canvas id="canvas" ref="canvasRef"></canvas>
 
-      <!-- 可视化轨迹点（简单） -->
-      <svg class="overlay" v-if="path.length">
-        <polyline
-          :points="polylinePoints"
-          fill="none"
-          stroke="rgba(0,0,0,0.25)"
-          stroke-width="3"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-      </svg>
+    <main class="content">
+      <transition name="fade-up" appear>
+        <div v-if="showContent" class="glass-card">
+          <header class="header">
+            <span class="date">2026.03.11</span>
+            <div class="line"></div>
+          </header>
 
-      <!-- 起点 / 终点标记 -->
-      <div v-if="startPos" :style="markerStyle(startPos)" class="marker start">S</div>
-      <div v-if="endPos" :style="markerStyle(endPos)" class="marker end">E</div>
-    </div>
+          <section class="main-body">
+            <h1 class="title">Happy Birthday</h1>
+            <p class="name">致：疼帅逼</p>
+            
+            <div class="message-box">
+              <p>愿每一枚星辰，都落在你的梦里；</p>
+              <p>愿每一寸时光，都温柔你的岁月。</p>
+              <p>在这个属于你的日子里，</p>
+              <p>愿你永远拥有热忱，永远被爱包围。</p>
+            </div>
+          </section>
 
-    <div class="info">
-      <p><strong>状态</strong>: {{ dragging ? '拖动中' : '空闲' }}</p>
-      <p><strong>开始时间</strong>: {{ formatTime(startTime) }}</p>
-      <p><strong>结束时间</strong>: {{ formatTime(endTime) }}</p>
-      <p><strong>持续时长</strong>: {{ durationMs }} ms</p>
-      <p><strong>即时方向</strong>: {{ currentDirection }}</p>
-      <p><strong>最终方向</strong>: {{ finalDirection }}</p>
-      <p><strong>总位移</strong>: {{ totalDistance.toFixed(1) }} px</p>
-      <p><strong>轨迹点数</strong>: {{ path.length }}</p>
+          <footer class="footer">
+            <button @click="playSurprise" class="action-btn">
+              <span>开启惊喜</span>
+            </button>
+          </footer>
+        </div>
+      </transition>
+    </main>
 
-      <div class="buttons">
-        <button @click="reset">重置</button>
-      </div>
+    <div class="music-icon" :class="{ 'rotate': isPlaying }" @click="toggleMusic">
+      🎵
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted } from 'vue';
 
-// refs
-const area = ref(null)
-const dragging = ref(false)
-const startTime = ref(null)
-const endTime = ref(null)
-const startPos = ref(null)
-const endPos = ref(null)
-const lastPos = ref(null)
-const path = ref([]) // [{x,y,t}]
-const currentDirection = ref('—')
-const finalDirection = ref('—')
-const totalDistance = ref(0)
-let activePointerId = null
+const showContent = ref(true);
+const isPlaying = ref(false);
+const canvasRef = ref(null);
 
-// helpers
-function formatTime(ts) {
-  if (!ts) return '—'
-  const d = new Date(ts)
-  return d.toLocaleString()
-}
-
-const durationMs = computed(() => {
-  if (!startTime.value) return 0
-  const end = endTime.value || Date.now()
-  return end - startTime.value
-})
-
-function distance(a, b) {
-  const dx = a.x - b.x
-  const dy = a.y - b.y
-  return Math.sqrt(dx * dx + dy * dy)
-}
-
-function calcDirection(from, to) {
-  const dx = to.x - from.x
-  const dy = to.y - from.y
-  // 判断主方向：水平/垂直
-  if (Math.abs(dx) < 3 && Math.abs(dy) < 3) return '静止'
-  if (Math.abs(dx) > Math.abs(dy)) {
-    return dx > 0 ? '向右' : '向左'
-  } else {
-    return dy > 0 ? '向下' : '向上'
-  }
-}
-
-// 事件处理
-function onPointerDown(e) {
-  // 只处理主按钮 (mouse) 或任意指针 (touch/stylus)
-  if (e.pointerType === 'mouse' && e.button !== 0) return
-
-  activePointerId = e.pointerId
-  area.value.setPointerCapture(activePointerId)
-
-  dragging.value = true
-  startTime.value = Date.now()
-  endTime.value = null
-  finalDirection.value = '—'
-
-  const p = getLocalPoint(e)
-  startPos.value = { ...p }
-  lastPos.value = { ...p }
-  endPos.value = null
-  path.value = [{ ...p, t: startTime.value }]
-  currentDirection.value = '开始'
-  totalDistance.value = 0
-}
-
-function onPointerMove(e) {
-  if (!dragging.value) return
-  if (e.pointerId !== activePointerId) return
-
-  const p = getLocalPoint(e)
-  const dx = p.x - lastPos.value.x
-  const dy = p.y - lastPos.value.y
-  const stepDist = Math.sqrt(dx * dx + dy * dy)
-  totalDistance.value += stepDist
-
-  // 更新即时方向（用最近一段）
-  currentDirection.value = calcDirection(lastPos.value, p)
-
-  lastPos.value = { ...p }
-  path.value.push({ ...p, t: Date.now() })
-}
-
-function onPointerUp(e) {
-  if (e.pointerId !== activePointerId) return
-
-  area.value.releasePointerCapture(activePointerId)
-  activePointerId = null
-
-  dragging.value = false
-  endTime.value = Date.now()
-
-  if (startPos.value && lastPos.value) {
-    endPos.value = { ...lastPos.value }
-    finalDirection.value = calcDirection(startPos.value, endPos.value)
-  }
-
-  currentDirection.value = '结束'
-}
-
-function onPointerCancel(e) {
-  // 当指针被中断（例如系统取消）
-  if (e.pointerId !== activePointerId) return
-  area.value.releasePointerCapture(activePointerId)
-  activePointerId = null
-  dragging.value = false
-  endTime.value = Date.now()
-  currentDirection.value = '已取消'
-}
-
-function getLocalPoint(e) {
-  const rect = area.value.getBoundingClientRect()
-  return {
-    x: e.clientX - rect.left,
-    y: e.clientY - rect.top,
-  }
-}
-
-function markerStyle(p) {
-  return {
-    left: `${p.x - 10}px`,
-    top: `${p.y - 10}px`
-  }
-}
-
-function reset() {
-  dragging.value = false
-  startTime.value = null
-  endTime.value = null
-  startPos.value = null
-  endPos.value = null
-  lastPos.value = null
-  path.value = []
-  currentDirection.value = '—'
-  finalDirection.value = '—'
-  totalDistance.value = 0
-}
-
-const polylinePoints = computed(() => {
-  return path.value.map(p => `${p.x},${p.y}`).join(' ')
-})
-
-// 清理（防止没捕获到 pointerup）
+// 粒子背景逻辑
 onMounted(() => {
-  // nothing to add for now
-})
+  const canvas = canvasRef.value;
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 
-onBeforeUnmount(() => {
-  try {
-    if (area.value && activePointerId != null) {
-      area.value.releasePointerCapture(activePointerId)
-      activePointerId = null
+  let particles = [];
+  class Particle {
+    constructor() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.size = Math.random() * 2 + 0.5;
+      this.speedY = Math.random() * 0.5 + 0.2;
+      this.opacity = Math.random();
     }
-  } catch (e) {
-    // ignore
+    update() {
+      this.y -= this.speedY;
+      if (this.y < 0) this.y = canvas.height;
+    }
+    draw() {
+      ctx.fillStyle = `rgba(255, 215, 0, ${this.opacity})`;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
   }
-})
+
+  for (let i = 0; i < 100; i++) particles.push(new Particle());
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      p.update();
+      p.draw();
+    });
+    requestAnimationFrame(animate);
+  }
+  animate();
+});
+
+const playSurprise = () => {
+  alert('✨ 愿你眼里有星辰，心中有山海，生日快乐！');
+};
+
+const toggleMusic = () => {
+  isPlaying.value = !isPlaying.value;
+};
 </script>
 
 <style scoped>
-.demo-wrap {
-  /* max-width: 900px; */
-  width: 100%;
-  /* margin: 18px auto; */
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', 'Arial';
-}
-
-.area {
+/* 核心样式 */
+.birthday-container {
+  margin-left: 0;
   position: relative;
-  height: 420px;
-   width: 70vw;
-  border: 2px dashed #d0d0d0;
-  border-radius: 8px;
-  /* margin: 12px 0; */
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 100vw;
+  height: 100vh;
   overflow: hidden;
-  touch-action: none; /* 阻止滚动以便 touch 拖动正常工作 */
-  background: linear-gradient(180deg, #fafafa, #fff);
-}
-
-.hint {
-  font-size: 16px;
-  color: #555;
-  user-select: none;
-}
-
-.overlay {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-.marker {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
+  background: #0a0a0a; /* 极简黑 */
   color: #fff;
-  user-select: none;
-  transform: translate(-50%, -50%);
-}
-.marker.start { background: #28a745; }
-.marker.end { background: #dc3545; }
-
-.info {
-  background: #fff;
-  border-radius: 8px;
-  padding: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
 }
 
-.buttons { margin-top: 8px }
-button { padding: 6px 10px; border-radius: 6px; border: 1px solid #ccc; background: #f7f7f7 }
+.bg-gradient {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, #1a1a2e 0%, #000 70%);
+  animation: drift 20s infinite linear;
+}
+
+#canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 20px;
+}
+
+.glass-card {
+  width: 100%;
+  max-width: 320px;
+  padding: 40px 30px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+}
+
+.header {
+  margin-bottom: 40px;
+}
+
+.date {
+  font-size: 12px;
+  letter-spacing: 4px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.line {
+  width: 40px;
+  height: 1px;
+  background: #d4af37; /* 金色 */
+  margin: 10px auto;
+}
+
+.title {
+  font-size: 2.2rem;
+  font-weight: 200;
+  margin: 0;
+  background: linear-gradient(to right, #fff, #d4af37, #fff);
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: shimmer 3s infinite;
+}
+
+.name {
+  margin-top: 10px;
+  font-weight: 300;
+  letter-spacing: 2px;
+}
+
+.message-box {
+  margin: 40px 0;
+  font-size: 14px;
+  line-height: 2.5;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 300;
+}
+
+.action-btn {
+  background: transparent;
+  border: 1px solid #d4af37;
+  color: #d4af37;
+  padding: 12px 35px;
+  border-radius: 30px;
+  font-size: 14px;
+  letter-spacing: 2px;
+  transition: all 0.3s;
+}
+
+.action-btn:active {
+  background: #d4af37;
+  color: #000;
+}
+
+.music-icon {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  z-index: 100;
+  font-size: 24px;
+  opacity: 0.7;
+}
+
+.rotate {
+  animation: rotating 3s linear infinite;
+}
+
+/* 动画 */
+@keyframes drift {
+  from { transform: translate(-25%, -25%) rotate(0deg); }
+  to { transform: translate(-25%, -25%) rotate(360deg); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200%; }
+  100% { background-position: 200%; }
+}
+
+@keyframes rotating {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.fade-up-enter-active {
+  transition: all 1.5s ease-out;
+}
+
+.fade-up-enter-from {
+  opacity: 0;
+  transform: translateY(30px);
+}
 </style>
