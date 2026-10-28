@@ -1,12 +1,16 @@
-import { fileURLToPath, URL } from 'node:url'
+﻿import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import tailwindcss from '@tailwindcss/vite'
 
-export default defineConfig({
-  // 腾讯云网站从域名根路径访问
-  base: '/',
+// Tencent Cloud: served from domain root "/"
+// GitHub Pages project site: served from "/vueDemo/" (pnpm build:github -> --mode github)
+export default defineConfig(({ mode }) => ({
+  base:
+    mode === 'github' || process.env.BUILD_TARGET === 'github'
+      ? '/vueDemo/'
+      : '/',
 
   plugins: [
     vue(),
@@ -19,4 +23,4 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
-})
+}))

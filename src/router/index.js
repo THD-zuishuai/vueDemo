@@ -31,7 +31,8 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory('/vueDemo/'),
+  // 自动跟随 vite.config.js 的 base（本地/腾讯云为 '/'，GitHub Pages 为 '/vueDemo/'）
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes
 })
 
