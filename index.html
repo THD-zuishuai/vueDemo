@@ -1,16 +1,23 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
   <head>
-    <meta charset="UTF-8">
-    <!-- <link rel="icon" href="/vueDemo/favicon.ico"> -->
-     <link rel="icon" type="image/png" href="/gentleman.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+
+    <!-- 网站图标：文件放在 public/gentleman.png -->
+    <link rel="icon" type="image/png" href="/gentleman.png" />
+
+    <!-- 移动端适配 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- 网站信息 -->
+    <meta name="description" content="THD 的个人博客" />
     <title>THD的博客</title>
   </head>
+
   <body>
     <div id="app"></div>
 
-    <!-- 关键：Vue入口 -->
+    <!-- Vue 入口，交给 Vite 自动打包 -->
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

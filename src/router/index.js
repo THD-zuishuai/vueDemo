@@ -3,6 +3,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Future from '../views/Future.vue'
 import Mine from '../views/Mine.vue'
+import Gameindex from '../views/Gameindex.vue'
+import snake from '../views/games/snake.vue'
 
 const routes = [
   {
@@ -16,7 +18,16 @@ const routes = [
    {
     path: '/Mine',
     component: Mine
-  }
+  },
+  {
+    path: '/Gameindex',
+    component: Gameindex
+  },
+ {
+    path: '/snake',
+    component: snake
+  },
+  
 ]
 
 const router = createRouter({

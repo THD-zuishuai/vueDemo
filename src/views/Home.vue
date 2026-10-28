@@ -71,10 +71,10 @@ const modules = ref([
     link: '/Mine'
   },
   {
-    title: '实验室',
-    desc: '一些花里胡哨的 CSS 特效、Canvas 动画和 AI 相关的各种小玩意儿。',
+    title: '小游戏',
+    desc: '好玩的小游戏',
     icon: '🧪',
-    link: ''
+    link: '/Gameindex'
   },
   {
     title: '音乐收藏',
