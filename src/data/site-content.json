@@ -1,0 +1,593 @@
+{
+  "site": {
+    "name": "免费游戏公益下载",
+    "nameEn": "Free Game Download",
+    "description": "发现免费、好玩的独立游戏与怀旧游戏",
+    "logoText": "FG",
+    "footerText": "让好游戏被更多人发现。资源版权归原作者所有。",
+    "copyright": "",
+    "disclaimer": "本站提供游戏信息与获取导航。资源授权与来源以对应条目说明为准。演示内容不代表真实游戏或可下载资源。",
+    "downloadProviders": ["迅雷网盘", "百度网盘", "夸克网盘", "阿里云盘", "123 云盘"]
+  },
+  "navigation": [
+    {
+      "label": "首页",
+      "path": "/"
+    },
+    {
+      "label": "发现游戏",
+      "path": "/games"
+    },
+    {
+      "label": "游戏分类",
+      "path": "/categories"
+    },
+    {
+      "label": "攻略指南",
+      "path": "/guides"
+    }
+  ],
+  "home": {
+    "eyebrow": "PLAY MORE, PAY LESS",
+    "title": "好游戏，免费玩。",
+    "subtitle": "探索值得收藏的独立精品与怀旧经典，开启你的下一场冒险。",
+    "searchPlaceholder": "搜索游戏、分类或关键词…",
+    "hotKeywords": [
+      "像素冒险",
+      "解谜",
+      "动作",
+      "休闲"
+    ],
+    "featuredTitle": "编辑精选",
+    "featuredDescription": "从这里发现下一款让你沉浸其中的好游戏。",
+    "gamesTitle": "人气游戏",
+    "gamesDescription": "精心整理的免费游戏与合法获取渠道。",
+    "guidesTitle": "玩家指南",
+    "guidesDescription": "安装、运行与游玩的小贴士。",
+    "featuredGameIds": [
+      "starlight-garden",
+      "tiny-kingdom",
+      "cloud-post"
+    ],
+    "recommendedGameIds": [
+      "starlight-garden",
+      "tiny-kingdom",
+      "cloud-post",
+      "moon-mail",
+      "tea-time",
+      "pixel-rail"
+    ],
+    "featuredGuideIds": [
+      "safe-download",
+      "controller-setup"
+    ]
+  },
+  "categories": [
+    {
+      "id": "adventure",
+      "name": "冒险探索",
+      "description": "踏上未知旅程",
+      "icon": "✦",
+      "color": "blue",
+      "sortOrder": 1
+    },
+    {
+      "id": "puzzle",
+      "name": "解谜益智",
+      "description": "动动脑筋",
+      "icon": "◇",
+      "color": "mint",
+      "sortOrder": 2
+    },
+    {
+      "id": "action",
+      "name": "动作闯关",
+      "description": "挑战反应极限",
+      "icon": "↗",
+      "color": "orange",
+      "sortOrder": 3
+    },
+    {
+      "id": "cozy",
+      "name": "轻松休闲",
+      "description": "享受悠闲时光",
+      "icon": "☼",
+      "color": "pink",
+      "sortOrder": 4
+    },
+    {
+      "id": "retro",
+      "name": "怀旧经典",
+      "description": "像素风格与复古玩法",
+      "icon": "▦",
+      "color": "purple",
+      "sortOrder": 5
+    }
+  ],
+  "games": [
+    {
+      "id": "starlight-garden",
+      "slug": "starlight-garden",
+      "title": "星光花园",
+      "subtitle": "在一座会发光的岛屿上种下梦想",
+      "description": "原创演示作品：探索星屿、收集种子、布置属于自己的夜光花园。舒缓的节奏适合在忙碌间隙慢慢体验。",
+      "cover": "",
+      "coverAlt": "星光花园游戏封面",
+      "screenshots": [],
+      "categoryIds": [
+        "cozy",
+        "adventure"
+      ],
+      "tags": [
+        "种植",
+        "治愈",
+        "演示作品"
+      ],
+      "platforms": [
+        "Windows",
+        "浏览器"
+      ],
+      "releaseYear": 2025,
+      "developer": "Pixel Supply Studio（虚构）",
+      "version": "演示版",
+      "language": [
+        "简体中文"
+      ],
+      "gameSize": "待补充",
+      "recommended": true,
+      "published": true,
+      "licenseStatus": "pending_review",
+      "licenseNote": "原创演示条目，资源与授权信息尚待补充；当前不提供下载。",
+      "licenseUrl": "",
+      "sourceUrl": "",
+      "downloadMode": "info_only",
+      "features": [
+        "自由布置花园",
+        "昼夜光影变化",
+        "轻松探索收集"
+      ],
+      "controls": [
+        "方向键：移动",
+        "鼠标：互动"
+      ],
+      "requirements": [],
+      "faqs": [
+        {
+          "question": "现在可以下载吗？",
+          "answer": "这是用于展示网站结构的演示条目，暂未提供下载。"
+        }
+      ],
+      "relatedGameIds": [
+        "tea-time",
+        "moon-mail"
+      ],
+      "demoOnly": true,
+      "downloadLinks": []
+    },
+    {
+      "id": "tiny-kingdom",
+      "slug": "tiny-kingdom",
+      "title": "迷你王国",
+      "subtitle": "从一片小小的草地开始建设",
+      "description": "原创演示作品：规划道路、安置居民，让小小王国逐步发展。每一局都可以尝试不同布局。",
+      "cover": "",
+      "coverAlt": "迷你王国游戏封面",
+      "screenshots": [],
+      "categoryIds": [
+        "puzzle",
+        "cozy"
+      ],
+      "tags": [
+        "建造",
+        "策略",
+        "演示作品"
+      ],
+      "platforms": [
+        "Windows"
+      ],
+      "releaseYear": 2025,
+      "developer": "Pixel Supply Studio（虚构）",
+      "version": "演示版",
+      "language": [
+        "简体中文"
+      ],
+      "gameSize": "待补充",
+      "recommended": true,
+      "published": true,
+      "licenseStatus": "pending_review",
+      "licenseNote": "原创演示条目，授权及资源尚待补充。",
+      "licenseUrl": "",
+      "sourceUrl": "",
+      "downloadMode": "info_only",
+      "features": [
+        "拼接地形扩展王国",
+        "规划居民区与农田",
+        "轻松无压力建造"
+      ],
+      "controls": [
+        "鼠标：选择与放置"
+      ],
+      "requirements": [],
+      "faqs": [],
+      "relatedGameIds": [
+        "starlight-garden",
+        "pixel-rail"
+      ],
+      "demoOnly": true,
+      "downloadLinks": []
+    },
+    {
+      "id": "cloud-post",
+      "slug": "cloud-post",
+      "title": "云端邮局",
+      "subtitle": "乘上热气球，把信送到云朵彼端",
+      "description": "原创演示作品：扮演天空邮差，穿越漂浮岛屿，解开轻巧的路径谜题，把每封信送到正确的人手中。",
+      "cover": "",
+      "coverAlt": "云端邮局游戏封面",
+      "screenshots": [],
+      "categoryIds": [
+        "adventure",
+        "puzzle"
+      ],
+      "tags": [
+        "解谜",
+        "探索",
+        "演示作品"
+      ],
+      "platforms": [
+        "浏览器"
+      ],
+      "releaseYear": 2025,
+      "developer": "Pixel Supply Studio（虚构）",
+      "version": "演示版",
+      "language": [
+        "简体中文"
+      ],
+      "gameSize": "无需安装",
+      "recommended": true,
+      "published": true,
+      "licenseStatus": "pending_review",
+      "licenseNote": "原创演示条目，暂无可用获取链接。",
+      "licenseUrl": "",
+      "sourceUrl": "",
+      "downloadMode": "info_only",
+      "features": [
+        "多座云岛等待探索",
+        "轻量路径谜题",
+        "原创角色与场景"
+      ],
+      "controls": [
+        "方向键：移动",
+        "空格：互动"
+      ],
+      "requirements": [],
+      "faqs": [],
+      "relatedGameIds": [
+        "starlight-garden",
+        "moon-mail"
+      ],
+      "demoOnly": true,
+      "downloadLinks": []
+    },
+    {
+      "id": "moon-mail",
+      "slug": "moon-mail",
+      "title": "月球快递员",
+      "subtitle": "在月面基地之间派送神秘包裹",
+      "description": "原创演示作品：驾驶小型月球车，在低重力环境中完成路线规划与包裹派送。",
+      "cover": "",
+      "coverAlt": "月球快递员游戏封面",
+      "screenshots": [],
+      "categoryIds": [
+        "action",
+        "adventure"
+      ],
+      "tags": [
+        "驾驶",
+        "太空",
+        "演示作品"
+      ],
+      "platforms": [
+        "Windows"
+      ],
+      "releaseYear": 2025,
+      "developer": "Pixel Supply Studio（虚构）",
+      "version": "演示版",
+      "language": [
+        "简体中文"
+      ],
+      "gameSize": "待补充",
+      "recommended": false,
+      "published": true,
+      "licenseStatus": "pending_review",
+      "licenseNote": "演示数据，不提供资源下载。",
+      "licenseUrl": "",
+      "sourceUrl": "",
+      "downloadMode": "info_only",
+      "features": [
+        "低重力驾驶",
+        "多条派送路线"
+      ],
+      "controls": [
+        "方向键：驾驶"
+      ],
+      "requirements": [],
+      "faqs": [],
+      "relatedGameIds": [
+        "cloud-post"
+      ],
+      "demoOnly": true,
+      "downloadLinks": []
+    },
+    {
+      "id": "tea-time",
+      "slug": "tea-time",
+      "title": "午后茶会",
+      "subtitle": "经营森林边的小小茶饮铺",
+      "description": "原创演示作品：采集食材、调配饮品，认识每天来访的森林朋友。",
+      "cover": "",
+      "coverAlt": "午后茶会游戏封面",
+      "screenshots": [],
+      "categoryIds": [
+        "cozy"
+      ],
+      "tags": [
+        "经营",
+        "治愈",
+        "演示作品"
+      ],
+      "platforms": [
+        "浏览器"
+      ],
+      "releaseYear": 2025,
+      "developer": "Pixel Supply Studio（虚构）",
+      "version": "演示版",
+      "language": [
+        "简体中文"
+      ],
+      "gameSize": "无需安装",
+      "recommended": false,
+      "published": true,
+      "licenseStatus": "pending_review",
+      "licenseNote": "演示数据，不提供资源下载。",
+      "licenseUrl": "",
+      "sourceUrl": "",
+      "downloadMode": "info_only",
+      "features": [
+        "调配特色饮品",
+        "与森林居民交流"
+      ],
+      "controls": [
+        "鼠标：操作"
+      ],
+      "requirements": [],
+      "faqs": [],
+      "relatedGameIds": [
+        "starlight-garden"
+      ],
+      "demoOnly": true,
+      "downloadLinks": []
+    },
+    {
+      "id": "pixel-rail",
+      "slug": "pixel-rail",
+      "title": "像素铁路",
+      "subtitle": "连接村庄与远方的山海",
+      "description": "原创演示作品：规划轨道、安排列车班次，让旅客安全抵达目的地。",
+      "cover": "",
+      "coverAlt": "像素铁路游戏封面",
+      "screenshots": [],
+      "categoryIds": [
+        "retro",
+        "puzzle"
+      ],
+      "tags": [
+        "像素",
+        "规划",
+        "演示作品"
+      ],
+      "platforms": [
+        "Windows"
+      ],
+      "releaseYear": 2025,
+      "developer": "Pixel Supply Studio（虚构）",
+      "version": "演示版",
+      "language": [
+        "简体中文"
+      ],
+      "gameSize": "待补充",
+      "recommended": false,
+      "published": true,
+      "licenseStatus": "pending_review",
+      "licenseNote": "演示数据，不提供资源下载。",
+      "licenseUrl": "",
+      "sourceUrl": "",
+      "downloadMode": "info_only",
+      "features": [
+        "轨道规划挑战",
+        "复古像素美术"
+      ],
+      "controls": [
+        "鼠标：铺设轨道"
+      ],
+      "requirements": [],
+      "faqs": [],
+      "relatedGameIds": [
+        "tiny-kingdom"
+      ],
+      "demoOnly": true,
+      "downloadLinks": []
+    },
+    {
+      "id": "moss-ruins",
+      "slug": "moss-ruins",
+      "title": "苔藓遗迹",
+      "subtitle": "寻找森林深处失落的机关",
+      "description": "原创演示作品：在古老遗迹中观察环境、寻找线索，逐步开启隐藏区域。",
+      "cover": "",
+      "coverAlt": "苔藓遗迹游戏封面",
+      "screenshots": [],
+      "categoryIds": [
+        "adventure",
+        "puzzle"
+      ],
+      "tags": [
+        "探索",
+        "机关",
+        "演示作品"
+      ],
+      "platforms": [
+        "Windows"
+      ],
+      "releaseYear": 2025,
+      "developer": "Pixel Supply Studio（虚构）",
+      "version": "演示版",
+      "language": [
+        "简体中文"
+      ],
+      "gameSize": "待补充",
+      "recommended": false,
+      "published": true,
+      "licenseStatus": "pending_review",
+      "licenseNote": "演示数据，不提供资源下载。",
+      "licenseUrl": "",
+      "sourceUrl": "",
+      "downloadMode": "info_only",
+      "features": [
+        "环境谜题",
+        "遗迹探索"
+      ],
+      "controls": [
+        "方向键：移动",
+        "空格：互动"
+      ],
+      "requirements": [],
+      "faqs": [],
+      "relatedGameIds": [
+        "cloud-post"
+      ],
+      "demoOnly": true,
+      "downloadLinks": []
+    },
+    {
+      "id": "comet-dash",
+      "slug": "comet-dash",
+      "title": "彗星冲刺",
+      "subtitle": "穿越星际赛道，躲开小行星带",
+      "description": "原创演示作品：简单易上手的短局街机挑战，追逐更远的飞行距离。",
+      "cover": "",
+      "coverAlt": "彗星冲刺游戏封面",
+      "screenshots": [],
+      "categoryIds": [
+        "action",
+        "retro"
+      ],
+      "tags": [
+        "街机",
+        "竞速",
+        "演示作品"
+      ],
+      "platforms": [
+        "浏览器"
+      ],
+      "releaseYear": 2025,
+      "developer": "Pixel Supply Studio（虚构）",
+      "version": "演示版",
+      "language": [
+        "简体中文"
+      ],
+      "gameSize": "无需安装",
+      "recommended": false,
+      "published": true,
+      "licenseStatus": "pending_review",
+      "licenseNote": "演示数据，不提供资源下载。",
+      "licenseUrl": "",
+      "sourceUrl": "",
+      "downloadMode": "info_only",
+      "features": [
+        "短局街机玩法",
+        "不断变化的星际障碍"
+      ],
+      "controls": [
+        "方向键：移动"
+      ],
+      "requirements": [],
+      "faqs": [],
+      "relatedGameIds": [],
+      "demoOnly": true,
+      "downloadLinks": []
+    }
+  ],
+  "guides": [
+    {
+      "id": "safe-download",
+      "slug": "safe-download",
+      "title": "如何安全获取免费游戏",
+      "summary": "从官方页面和可信来源获取游戏前，建议先检查这些信息。",
+      "cover": "",
+      "category": "资源指南",
+      "tags": [
+        "安全",
+        "入门"
+      ],
+      "author": "编辑部",
+      "publishedAt": "2025-01-10",
+      "readTime": "3 分钟",
+      "published": true,
+      "content": [
+        {
+          "heading": "优先选择官方渠道",
+          "paragraphs": [
+            "优先通过开发者官网、官方商店或开发者明确认可的平台获取游戏。",
+            "下载前核对页面域名、游戏名称和版本信息，留意开发者发布的说明。"
+          ]
+        },
+        {
+          "heading": "确认资源信息",
+          "paragraphs": [
+            "本站会标注资源获取方式与授权说明。信息待核实的条目不会提供本站网盘下载入口。",
+            "遇到要求安装不明程序、关闭安全软件或提供账户密码的页面，请及时离开。"
+          ]
+        }
+      ],
+      "relatedGameIds": [
+        "starlight-garden"
+      ]
+    },
+    {
+      "id": "controller-setup",
+      "slug": "controller-setup",
+      "title": "初次连接手柄的小技巧",
+      "summary": "从系统识别到游戏设置，快速完成常见手柄配置。",
+      "cover": "",
+      "category": "游玩指南",
+      "tags": [
+        "手柄",
+        "设置"
+      ],
+      "author": "编辑部",
+      "publishedAt": "2025-01-08",
+      "readTime": "4 分钟",
+      "published": true,
+      "content": [
+        {
+          "heading": "连接设备",
+          "paragraphs": [
+            "使用 USB 连接时，等待系统完成设备识别；无线连接时，按设备说明进入配对模式。",
+            "如果没有反应，可以更换接口或为手柄充电后重试。"
+          ]
+        },
+        {
+          "heading": "在游戏中测试",
+          "paragraphs": [
+            "打开游戏设置中的控制选项，确认按键映射与摇杆方向。",
+            "不同游戏的按键名称可能不同，可以先在安全的菜单页面逐项测试。"
+          ]
+        }
+      ],
+      "relatedGameIds": [
+        "pixel-rail"
+      ]
+    }
+  ]
+}

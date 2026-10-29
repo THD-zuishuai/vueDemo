@@ -25,18 +25,14 @@
         <div 
           v-for="(module, index) in modules" 
           :key="index"
-          @click="gotoroute(module.link)"
-          class="group relative p-8 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl hover:bg-white/10 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(79,_70,_229,_0.3)] cursor-pointer"
+          class="group relative p-8 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl hover:bg-white/10 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(79,70,229,0.3)] cursor-default"
         >
           <div class="absolute inset-0 rounded-3xl bg-gradient-to-br from-cyan-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
           
           <div class="relative z-10">
             <div class="text-4xl mb-4">{{ module.icon }}</div>
             <h3 class="text-2xl font-bold mb-2">{{ module.title }}</h3>
-            <p class="text-gray-400 text-sm leading-relaxed mb-6">{{ module.desc }}</p>
-            <div class="flex items-center text-cyan-400 font-semibold group-hover:translate-x-2 transition-transform">
-              探索更多 <span class="ml-2">→</span>
-            </div>
+            <p class="text-gray-400 text-sm leading-relaxed">{{ module.desc }}</p>
           </div>
         </div>
       </div>
@@ -52,54 +48,39 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
 
-const router = useRouter()
-
-// 模块数据：可以自由增减
 const modules = ref([
   {
     title: '未来趋势',
     desc: 'THD输入足够的数据，通过gpt5.4模型,生成未来金融的趋势。',
-    icon: '🚀',
-    link: '/Future'
+    icon: '🚀'
   },
   {
     title: '我的履历',
     desc: 'THD的个人履历，包含个人信息、工作经历、项目经验、教育经历等。',
-    icon: '✍️',
-    link: '/Mine'
+    icon: '✍️'
   },
   {
     title: '小游戏',
     desc: '好玩的小游戏',
-    icon: '🧪',
-    link: '/Gameindex'
+    icon: '🧪'
   },
   {
     title: '音乐收藏',
     desc: '写代码时循环播放的歌单，从 Lo-Fi 到重金属，风格极其分裂。',
-    icon: '🎵',
-    link: ''
+    icon: '🎵'
   },
   {
     title: '关于我',
     desc: '想知道我是谁？想找我合作？点击这里查看我的详细简历和联系方式。',
-    icon: '👨‍💻',
-    link: ''
+    icon: '👨‍💻'
   },
   {
     title: '碎碎念',
     desc: '生活碎片记录，包含摄影、旅行以及对这个世界的各种吐槽。',
-    icon: '📸',
-    link: ''
+    icon: '📸'
   }
 ])
-const gotoroute = (link: string) => {
-  if (link) {
-    router.push(link)
-  }
-}
 </script>
 
 <style scoped>
